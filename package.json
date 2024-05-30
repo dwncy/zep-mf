@@ -33,6 +33,7 @@
     "@babel/runtime": "^7.13.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "zephyr-edge-contract": "^0.0.10",
     "zephyr-webpack-plugin": "^0.0.10"
   }
 }

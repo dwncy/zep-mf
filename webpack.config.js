@@ -1,9 +1,8 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const { withZephyr } = require('zephyr-webpack-plugin');
 
 const deps = require("./package.json").dependencies;
-module.exports = withZephyr()({
+module.exports = {
   output: {
     publicPath: "http://localhost:8080/",
   },
@@ -44,8 +43,12 @@ module.exports = withZephyr()({
     new ModuleFederationPlugin({
       name: "test_mf",
       filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      remotes: {
+        'team-green': 'darwin301194_gmail_com_1-team-green-zephyr-examples-dwncy/remoteEntry.js'
+      },
+      exposes: {
+        './Button': './src/components/Button'
+      },
       shared: {
         ...deps,
         react: {
@@ -62,4 +65,4 @@ module.exports = withZephyr()({
       template: "./src/index.html",
     }),
   ],
-});
+};
